@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="热部署可以使的修改代码后，无须重启服务器，就可以加载更改的代码。  第1种：修改服务器配置，使得IDEA窗口失去焦点时，更新类和资源  菜单Run -&amp;gt; EditConfiguration , 然后配置指定服务器下，右侧server标签下on frame deactivation = Update classes and resource。  优点：简单  缺点：基于JVM提供的热加载仅支持">
+<meta name="keywords" content="Java, Go, Ruby, Spring, Spring boot, Hexo, 分布式, 微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intellij IDEA 4种配置热部署的方法">
+<meta property="og:url" content="http://mario6.me/2017/07/15/idea-hotswap/index.html">
+<meta property="og:site_name" content="路遥之玛丽">
+<meta property="og:description" content="热部署可以使的修改代码后，无须重启服务器，就可以加载更改的代码。  第1种：修改服务器配置，使得IDEA窗口失去焦点时，更新类和资源  菜单Run -&amp;gt; EditConfiguration , 然后配置指定服务器下，右侧server标签下on frame deactivation = Update classes and resource。  优点：简单  缺点：基于JVM提供的热加载仅支持">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-10T17:25:20.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Intellij IDEA 4种配置热部署的方法">
+<meta name="twitter:description" content="热部署可以使的修改代码后，无须重启服务器，就可以加载更改的代码。  第1种：修改服务器配置，使得IDEA窗口失去焦点时，更新类和资源  菜单Run -&amp;gt; EditConfiguration , 然后配置指定服务器下，右侧server标签下on frame deactivation = Update classes and resource。  优点：简单  缺点：基于JVM提供的热加载仅支持">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Intellij IDEA 4种配置热部署的方法</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/09/hexo-quick-start/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mario6.me/2017/07/15/idea-hotswap/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mario6.me/2017/07/15/idea-hotswap/&text=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mario6.me/2017/07/15/idea-hotswap/&is_video=false&description=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Intellij IDEA 4种配置热部署的方法&body=Check out this article: http://mario6.me/2017/07/15/idea-hotswap/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mario6.me/2017/07/15/idea-hotswap/&name=Intellij IDEA 4种配置热部署的方法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Intellij IDEA 4种配置热部署的方法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">路遥之玛丽</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-07-15T05:32:00.000Z" itemprop="datePublished">2017-07-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tools/">tools</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>热部署可以使的修改代码后，无须重启服务器，就可以加载更改的代码。</p>
+<ul>
+<li><p>第1种：修改服务器配置，使得IDEA窗口失去焦点时，更新类和资源</p>
+<p> 菜单Run -&gt; EditConfiguration , 然后配置指定服务器下，右侧server标签下on frame deactivation = Update classes and resource。</p>
+<p> 优点：简单</p>
+<p> 缺点：基于JVM提供的热加载仅支持方法块内代码修改，只有debug模式下，并且是在idea失去焦点时才会出发热加载，相对加载速度缓慢</p>
+</li>
+</ul>
+<ul>
+<li><p>第2种：使用springloaded jar包</p>
+<p>  a. 下载jar包，github：<a href="https://github.com/spring-projects/spring-loaded" target="_blank" rel="noopener">https://github.com/spring-projects/spring-loaded</a></p>
+<p>  b. 启动应用时添加VM启动参数：<code>-noverify -javaagent:/home/lkqm/.m2/repository/org/springframework/springloaded/1.2.7.RELEASE/springloaded-1.2.7.RELEASE.jar -noverify</code></p>
+<p>  优点：对Spring系列框架支持好（不含Spring boot）, 支持 成员级别的修改（增删改方法、字段、注解），支持对枚举值集。</p>
+<p>  缺点：与优点相对</p>
+</li>
+</ul>
+<ul>
+<li><p>第3种：使用spring-boot-devtools提供的开发者工具</p>
+<p> spring-boot项目中引入如下依赖</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p> 优点：简单，支持Spring-boot项目，支持成员级别的修改热部署。</p>
+<p> 缺点：只支持spring-boot项目。</p>
+</li>
+</ul>
+<ul>
+<li><p>第4种：使用Jrebel插件实现热部署(该插件14天免费试用)</p>
+<p>  在线安装：菜单File -&gt; Setting -&gt; Plugin, 点击右侧底部 Browse repositories, 弹出框顶部输入:JReble for Intellij， 选中安装即可。</p>
+<p>  优点：强大，对各类框架支持，并且提供IDE插件的方式。</p>
+</li>
+</ul>
+<p>最后3种方法是基于类加载机制来实现热加载的，因此你修改完成代码后必须重新编译当前代码，才能触发热部署，Eclipse默认就支持了自动编译，而在Intellij IDEA中默认是关闭了自动编译的，可以按照如下2步设置开启：</p>
+<ol>
+<li>IDEA开启项目自动编译，进入设置，Build,Execut, Deployment -&gt; Compiler  勾选中左侧的Build Project automatically</li>
+<li>IDEA开启项目运行时自动make, ctrl + shift + a搜索命令：registry -&gt; 勾选compiler.automake.allow.when.app.running</li>
+</ol>
+
+  </div>
+
+
+</article>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mario6.me/2017/07/15/idea-hotswap/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mario6.me/2017/07/15/idea-hotswap/&text=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mario6.me/2017/07/15/idea-hotswap/&is_video=false&description=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Intellij IDEA 4种配置热部署的方法&body=Check out this article: http://mario6.me/2017/07/15/idea-hotswap/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mario6.me/2017/07/15/idea-hotswap/&title=Intellij IDEA 4种配置热部署的方法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mario6.me/2017/07/15/idea-hotswap/&name=Intellij IDEA 4种配置热部署的方法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Mario Luo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

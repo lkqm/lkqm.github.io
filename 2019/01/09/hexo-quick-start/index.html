@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="搭建原理hexo是依赖于nodejs的博客框架(软件)，然后将文章(markdown格式)生成静态文件(html、css、js…)。再把这些生成的文件放到一个github项目上，利用github pages(github提供的一种服务)就可以访问了。 所以利用hexo搭建博客前请确保已经安装: nodejs、git 本地搭建并发布安装1234sudo npm install -g hexo-cli">
+<meta name="keywords" content="Java, Go, Ruby, Spring, Spring boot, Hexo, 分布式, 微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 搭建个人博客">
+<meta property="og:url" content="http://mario6.me/2019/01/09/hexo-quick-start/index.html">
+<meta property="og:site_name" content="路遥之玛丽">
+<meta property="og:description" content="搭建原理hexo是依赖于nodejs的博客框架(软件)，然后将文章(markdown格式)生成静态文件(html、css、js…)。再把这些生成的文件放到一个github项目上，利用github pages(github提供的一种服务)就可以访问了。 所以利用hexo搭建博客前请确保已经安装: nodejs、git 本地搭建并发布安装1234sudo npm install -g hexo-cli">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-10T16:40:59.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 搭建个人博客">
+<meta name="twitter:description" content="搭建原理hexo是依赖于nodejs的博客框架(软件)，然后将文章(markdown格式)生成静态文件(html、css、js…)。再把这些生成的文件放到一个github项目上，利用github pages(github提供的一种服务)就可以访问了。 所以利用hexo搭建博客前请确保已经安装: nodejs、git 本地搭建并发布安装1234sudo npm install -g hexo-cli">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Hexo 搭建个人博客</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mario6.me/2019/01/09/hexo-quick-start/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mario6.me/2019/01/09/hexo-quick-start/&text=Hexo 搭建个人博客"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mario6.me/2019/01/09/hexo-quick-start/&is_video=false&description=Hexo 搭建个人博客"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo 搭建个人博客&body=Check out this article: http://mario6.me/2019/01/09/hexo-quick-start/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mario6.me/2019/01/09/hexo-quick-start/&name=Hexo 搭建个人博客&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建原理"><span class="toc-number">1.</span> <span class="toc-text">搭建原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地搭建并发布"><span class="toc-number">2.</span> <span class="toc-text">本地搭建并发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">2.2.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布-Github"><span class="toc-number">2.3.</span> <span class="toc-text">发布(Github)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本配置-Keep-it-simple"><span class="toc-number">2.4.</span> <span class="toc-text">基本配置(Keep it simple)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步你的配置和文章"><span class="toc-number">3.</span> <span class="toc-text">同步你的配置和文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#坚果云-Mackup"><span class="toc-number">3.1.</span> <span class="toc-text">坚果云 + Mackup</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hexo 搭建个人博客
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">路遥之玛丽</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-09T13:00:00.000Z" itemprop="datePublished">2019-01-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tools/">tools</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="搭建原理"><a href="#搭建原理" class="headerlink" title="搭建原理"></a>搭建原理</h2><p>hexo是依赖于nodejs的博客框架(软件)，然后将文章(markdown格式)生成静态文件(html、css、js…)。再把这些生成的文件放到一个github项目上，利用github pages(github提供的一种服务)就可以访问了。</p>
+<p>所以利用hexo搭建博客前请确保已经安装: <code>nodejs</code>、<code>git</code></p>
+<h2 id="本地搭建并发布"><a href="#本地搭建并发布" class="headerlink" title="本地搭建并发布"></a>本地搭建并发布</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli	<span class="comment"># 安装hexo(软件)</span></span><br><span class="line">hexo init mario6.me				<span class="comment"># 初始化博客目录</span></span><br><span class="line">hexo generate					<span class="comment"># 生成静态资源, 简写: hexo g</span></span><br><span class="line">hexo server						<span class="comment"># 启动本地服务, 简写: hexo s</span></span><br></pre></td></tr></table></figure>
+<p>执行如上shell命令, 启动成功访问地址: <code>http://localhost:4000</code>, 默认的主题不太好看，所以需要自己再安装主题。</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>hexo的主题有很多，对比了官网所有的主题，最终选择了cactus。</p>
+<ol>
+<li>安装主题, 执行<code>cd mario6.me &amp;&amp; git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus</code></li>
+<li>应用主题, 修改站点配置文件(<code>mario6.me/_config.yml</code>), 其中的配置项: <code>theme: cactus</code></li>
+<li>重写生成, 并预览新主题<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code></li>
+</ol>
+<h3 id="发布-Github"><a href="#发布-Github" class="headerlink" title="发布(Github)"></a>发布(Github)</h3><p>在github上创建一个特点名称的仓库: [username].github.io, 然后修改站点配置文件([folder]/_config.xml):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">     type: git</span><br><span class="line">     repository: git@github.com:lkqm/lkqm.github.io.git</span><br><span class="line">     branch: master</span><br></pre></td></tr></table></figure></p>
+<p>然后执行: <code>hexo deploy</code>, 稍等片刻即可访问: <code>https://lkqm.github.io</code></p>
+<h3 id="基本配置-Keep-it-simple"><a href="#基本配置-Keep-it-simple" class="headerlink" title="基本配置(Keep it simple)"></a>基本配置(Keep it simple)</h3><p>也许需要改的配置就如下几项, 站点配置文件(<code>&lt;folder&gt;/_config.yml</code>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Site，站点配置, 页面可见的部分</span><br><span class="line">title: 路遥之玛丽</span><br><span class="line">subtitle: 路漫漫其修远兮，吾将上下而求索</span><br><span class="line">description: 疯狂的人做疯狂的事情, 喜欢vim的流畅、linux的炫酷, 享受编程的乐趣。热爱开源、热爱生活。Keep it simple...</span><br><span class="line">keywords: Java, Go, Ruby, Spring, Spring boot, Hexo, 分布式, 微服务</span><br><span class="line">author: Mario Luo</span><br><span class="line"></span><br><span class="line"># 配置你的url</span><br><span class="line">url: http://www.mario6.me</span><br><span class="line"># 主题</span><br><span class="line">theme: cactus</span><br><span class="line"># 发布</span><br><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repository: https://github.com/lkqm/lkqm.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure></p>
+<h2 id="同步你的配置和文章"><a href="#同步你的配置和文章" class="headerlink" title="同步你的配置和文章"></a>同步你的配置和文章</h2><p>上述步骤只会将生成(<code>hexo g</code>)的静态资源(<code>public</code>目录下)同步到github, 所以我们需要将如下文件同步:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mario6.me/</span><br><span class="line">	- source/						# 文章.md, 其他图片素材等</span><br><span class="line">	- _config.yml					# 站点配置</span><br><span class="line">	- themes/cactus/_config.yml		# 主题配置</span><br></pre></td></tr></table></figure>
+<h3 id="坚果云-Mackup"><a href="#坚果云-Mackup" class="headerlink" title="坚果云 + Mackup"></a>坚果云 + Mackup</h3><p>坚果云是一款云同步软件(免费版), mackup是mac或linux的备份工具(可以快速创建软连接), 两者结合可以达到创建文章、修改配置后立即同步。</p>
+<p>1.安装mackup: mac系统执行(<code>brew install mackup</code>)</p>
+<p>2.修改mackup配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[storage]</span><br><span class="line">engine = file_system</span><br><span class="line">path = /Users/mario/Nutstore Files/dotfiles		# 某个目录(被坚果云同步的)</span><br><span class="line"></span><br><span class="line">[applications_to_sync]</span><br><span class="line">mackup</span><br><span class="line">mario6.me</span><br></pre></td></tr></table></figure></p>
+<p>3.创建备份规则(mario6.me): 由于默认mackup不支持hexo的备份, 所以定义一个配置(~/.mackup/mario6.me.cfg)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[application]</span><br><span class="line">name = Mario6.me</span><br><span class="line">[configuration_files]</span><br><span class="line">mario6.me/_config.yml			# 路径是按照用户目录为根目录</span><br><span class="line">mario6.me/source</span><br><span class="line">mario6.me/themes/</span><br></pre></td></tr></table></figure></p>
+<p>4.第一次配置需要执行命令备份: <code>mackup backup</code>, 其实就是a.移动文件到指定地方, b.然后再创建软连接</p>
+
+  </div>
+
+
+</article>
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建原理"><span class="toc-number">1.</span> <span class="toc-text">搭建原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地搭建并发布"><span class="toc-number">2.</span> <span class="toc-text">本地搭建并发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">2.2.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布-Github"><span class="toc-number">2.3.</span> <span class="toc-text">发布(Github)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本配置-Keep-it-simple"><span class="toc-number">2.4.</span> <span class="toc-text">基本配置(Keep it simple)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步你的配置和文章"><span class="toc-number">3.</span> <span class="toc-text">同步你的配置和文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#坚果云-Mackup"><span class="toc-number">3.1.</span> <span class="toc-text">坚果云 + Mackup</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mario6.me/2019/01/09/hexo-quick-start/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mario6.me/2019/01/09/hexo-quick-start/&text=Hexo 搭建个人博客"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mario6.me/2019/01/09/hexo-quick-start/&is_video=false&description=Hexo 搭建个人博客"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo 搭建个人博客&body=Check out this article: http://mario6.me/2019/01/09/hexo-quick-start/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mario6.me/2019/01/09/hexo-quick-start/&title=Hexo 搭建个人博客"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mario6.me/2019/01/09/hexo-quick-start/&name=Hexo 搭建个人博客&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Mario Luo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/lkqm">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
